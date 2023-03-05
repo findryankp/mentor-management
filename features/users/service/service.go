@@ -21,6 +21,7 @@ func (s *userService) GetById(id uint) (users.UserEntity, error) {
 }
 
 func (s *userService) Create(request users.UserEntity) (users.UserEntity, error) {
+	request.Status = true
 	user_id, err := s.Data.Store(request)
 	if err != nil {
 		return users.UserEntity{}, err
