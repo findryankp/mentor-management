@@ -3,6 +3,7 @@ package delivery
 import (
 	"clean-arch/features/teams/delivery"
 	"clean-arch/features/users"
+	"reflect"
 )
 
 type UserResponse struct {
@@ -16,18 +17,23 @@ type UserResponse struct {
 }
 
 func UserEntityToUserResponse(userEntity users.UserEntity) UserResponse {
-	return UserResponse{
+	result := UserResponse{
 		Id:       userEntity.Id,
 		TeamId:   userEntity.TeamId,
 		FullName: userEntity.FullName,
 		Email:    userEntity.Email,
 		Role:     userEntity.Team.Name,
 		Status:   userEntity.Status,
-		Team: &delivery.TeamResponse{
+	}
+
+	if !reflect.ValueOf(userEntity.Team).IsZero() {
+		result.Team = &delivery.TeamResponse{
 			Id:   userEntity.Team.Id,
 			Name: userEntity.Team.Name,
-		},
+		}
 	}
+
+	return result
 }
 
 func ListUserEntityToUserResponse(dataCore []users.UserEntity) []UserResponse {

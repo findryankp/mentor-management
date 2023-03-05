@@ -3,6 +3,7 @@ package data
 import (
 	"clean-arch/features/teams"
 	"clean-arch/features/users"
+	"reflect"
 )
 
 func UserEntityToUser(userEntity users.UserEntity) User {
@@ -17,7 +18,8 @@ func UserEntityToUser(userEntity users.UserEntity) User {
 }
 
 func UserToUserEntity(user User) users.UserEntity {
-	return users.UserEntity{
+
+	result := users.UserEntity{
 		Id:        user.ID,
 		TeamId:    user.TeamId,
 		FullName:  user.FullName,
@@ -27,11 +29,16 @@ func UserToUserEntity(user User) users.UserEntity {
 		Status:    user.Status,
 		CreatedAt: user.CreatedAt,
 		UpdatedAt: user.UpdatedAt,
-		Team: teams.TeamEntity{
+	}
+
+	if !reflect.ValueOf(user.Team).IsZero() {
+		result.Team = teams.TeamEntity{
 			Id:   user.Team.ID,
 			Name: user.Team.Name,
-		},
+		}
 	}
+
+	return result
 }
 
 func ListUserToUserEntity(user []User) []users.UserEntity {
