@@ -14,31 +14,36 @@ func New(data teams.TeamDataInterface) teams.TeamServiceInterface {
 	}
 }
 
-func (t *teamService) GetAll() ([]teams.TeamEntity, error) {
-	return t.Data.SelectAll()
+func (s *teamService) GetAll() ([]teams.TeamEntity, error) {
+	return s.Data.SelectAll()
 }
 
-func (t *teamService) GetById(id uint) (teams.TeamEntity, error) {
-	return t.Data.SelectById(id)
+func (s *teamService) GetById(id uint) (teams.TeamEntity, error) {
+	return s.Data.SelectById(id)
 }
 
-// Create implements teams.TeamServiceInterface
-func (t *teamService) Create(teamEntity teams.TeamEntity) (teams.TeamEntity, error) {
-	return t.Data.Store(teamEntity)
+func (s *teamService) Create(teamEntity teams.TeamEntity) (teams.TeamEntity, error) {
+	user_id, err := s.Data.Store(teamEntity)
+	if err != nil {
+		return teams.TeamEntity{}, err
+	}
+	return s.Data.SelectById(user_id)
 }
 
-func (t *teamService) Update(teamEntity teams.TeamEntity, id uint) (teams.TeamEntity, error) {
+func (s *teamService) Update(teamEntity teams.TeamEntity, id uint) (teams.TeamEntity, error) {
 	//check exist data
-	if checkDataExist, err := t.Data.SelectById(id); err != nil {
+	if checkDataExist, err := s.Data.SelectById(id); err != nil {
 		return checkDataExist, err
 	}
 
 	// update
-	updateData, err := t.Data.Edit(teamEntity, id)
-	updateData.Id = id
-	return updateData, err
+	err := s.Data.Edit(teamEntity, id)
+	if err != nil {
+		return teams.TeamEntity{}, err
+	}
+	return s.Data.SelectById(id)
 }
 
-func (t *teamService) Delete(id uint) error {
-	return t.Data.Destroy(id)
+func (s *teamService) Delete(id uint) error {
+	return s.Data.Destroy(id)
 }

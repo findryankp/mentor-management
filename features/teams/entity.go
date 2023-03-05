@@ -22,7 +22,7 @@ type TeamServiceInterface interface {
 type TeamDataInterface interface {
 	SelectAll() ([]TeamEntity, error)
 	SelectById(id uint) (TeamEntity, error)
-	Store(teamEntity TeamEntity) (TeamEntity, error)
-	Edit(teamEntity TeamEntity, id uint) (TeamEntity, error)
+	Store(teamEntity TeamEntity) (uint, error)
+	Edit(teamEntity TeamEntity, id uint) error
 	Destroy(id uint) error
 }

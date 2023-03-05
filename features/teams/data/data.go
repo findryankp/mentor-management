@@ -34,20 +34,20 @@ func (q *query) SelectById(id uint) (teams.TeamEntity, error) {
 	return TeamToTeamEntity(team), nil
 }
 
-func (q *query) Store(teamEntity teams.TeamEntity) (teams.TeamEntity, error) {
+func (q *query) Store(teamEntity teams.TeamEntity) (uint, error) {
 	team := TeamEntityToTeam(teamEntity)
 	if err := q.db.Create(&team); err.Error != nil {
-		return teamEntity, err.Error
+		return 0, err.Error
 	}
-	return TeamToTeamEntity(team), nil
+	return team.ID, nil
 }
 
-func (q *query) Edit(teamEntity teams.TeamEntity, id uint) (teams.TeamEntity, error) {
+func (q *query) Edit(teamEntity teams.TeamEntity, id uint) error {
 	team := TeamEntityToTeam(teamEntity)
 	if err := q.db.Where("id", id).Updates(&team); err.Error != nil {
-		return teamEntity, err.Error
+		return err.Error
 	}
-	return TeamToTeamEntity(team), nil
+	return nil
 }
 
 func (q *query) Destroy(id uint) error {
