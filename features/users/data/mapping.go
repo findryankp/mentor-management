@@ -1,6 +1,9 @@
 package data
 
-import "clean-arch/features/users"
+import (
+	"clean-arch/features/teams"
+	"clean-arch/features/users"
+)
 
 func UserEntityToUser(userEntity users.UserEntity) User {
 	return User{
@@ -24,6 +27,10 @@ func UserToUserEntity(user User) users.UserEntity {
 		Status:    user.Status,
 		CreatedAt: user.CreatedAt,
 		UpdatedAt: user.UpdatedAt,
+		Team: teams.TeamEntity{
+			Id:   user.Team.ID,
+			Name: user.Team.Name,
+		},
 	}
 }
 

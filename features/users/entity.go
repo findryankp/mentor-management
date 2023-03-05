@@ -1,12 +1,14 @@
 package users
 
 import (
+	"clean-arch/features/teams"
 	"time"
 )
 
 type UserEntity struct {
 	Id        uint
 	TeamId    uint
+	Team      teams.TeamEntity
 	FullName  string
 	Email     string
 	Password  string
@@ -27,7 +29,7 @@ type UserServiceInterface interface {
 type UserDataInterface interface {
 	SelectAll() ([]UserEntity, error)
 	SelectById(id uint) (UserEntity, error)
-	Store(userEntity UserEntity) (UserEntity, error)
-	Edit(userEntity UserEntity, id uint) (UserEntity, error)
+	Store(userEntity UserEntity) (uint, error)
+	Edit(userEntity UserEntity, id uint) (uint, error)
 	Destroy(id uint) error
 }

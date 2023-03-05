@@ -21,7 +21,12 @@ func (s *userService) GetById(id uint) (users.UserEntity, error) {
 }
 
 func (s *userService) Create(request users.UserEntity) (users.UserEntity, error) {
-	return s.Data.Store(request)
+	user_id, err := s.Data.Store(request)
+	if err != nil {
+		return users.UserEntity{}, err
+	}
+
+	return s.Data.SelectById(user_id)
 }
 
 func (s *userService) Update(request users.UserEntity, id uint) (users.UserEntity, error) {
@@ -29,7 +34,12 @@ func (s *userService) Update(request users.UserEntity, id uint) (users.UserEntit
 		return checkDataExist, err
 	}
 
-	return s.Data.Edit(request, id)
+	user_id, err := s.Data.Edit(request, id)
+	if err != nil {
+		return users.UserEntity{}, err
+	}
+
+	return s.Data.SelectById(user_id)
 }
 
 func (s *userService) Delete(id uint) error {

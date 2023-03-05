@@ -1,14 +1,18 @@
 package delivery
 
-import "clean-arch/features/users"
+import (
+	"clean-arch/features/teams/delivery"
+	"clean-arch/features/users"
+)
 
 type UserResponse struct {
-	Id       uint   `json:"id"`
-	TeamId   uint   `json:"team_id"`
-	FullName string `json:"full_name"`
-	Email    string `json:"email"`
-	Role     string `json:"role"`
-	Status   bool   `json:"status"`
+	Id       uint                   `json:"id"`
+	TeamId   uint                   `json:"team_id"`
+	FullName string                 `json:"full_name"`
+	Email    string                 `json:"email"`
+	Role     string                 `json:"role"`
+	Status   bool                   `json:"status"`
+	Team     *delivery.TeamResponse `json:"team,omitempty"`
 }
 
 func UserEntityToUserResponse(userEntity users.UserEntity) UserResponse {
@@ -17,8 +21,12 @@ func UserEntityToUserResponse(userEntity users.UserEntity) UserResponse {
 		TeamId:   userEntity.TeamId,
 		FullName: userEntity.FullName,
 		Email:    userEntity.Email,
-		Role:     userEntity.Role,
+		Role:     userEntity.Team.Name,
 		Status:   userEntity.Status,
+		Team: &delivery.TeamResponse{
+			Id:   userEntity.Team.Id,
+			Name: userEntity.Team.Name,
+		},
 	}
 }
 
