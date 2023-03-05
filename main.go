@@ -11,6 +11,7 @@ import (
 func main() {
 	cfg := configs.InitConfig()
 	db := database.InitDBMysql(*cfg)
+	database.InitMigration(db)
 
 	e := echo.New()
 	router.InitRouter(db, e)

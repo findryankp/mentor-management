@@ -28,26 +28,26 @@ func (q *query) SelectAll() ([]teams.TeamEntity, error) {
 // SelectById implements teams.TeamDataInterface
 func (q *query) SelectById(id uint) (teams.TeamEntity, error) {
 	var team Team
-	if err := q.db.Find(&team); err.Error != nil {
+	if err := q.db.First(&team, id); err.Error != nil {
 		return teams.TeamEntity{}, err.Error
 	}
 	return TeamToTeamEntity(team), nil
 }
 
-func (q *query) Store(teamEntity teams.TeamEntity) error {
+func (q *query) Store(teamEntity teams.TeamEntity) (teams.TeamEntity, error) {
 	team := TeamEntityToTeam(teamEntity)
 	if err := q.db.Create(&team); err.Error != nil {
-		return err.Error
+		return teamEntity, err.Error
 	}
-	return nil
+	return TeamToTeamEntity(team), nil
 }
 
-func (q *query) Edit(teamEntity teams.TeamEntity, id uint) error {
+func (q *query) Edit(teamEntity teams.TeamEntity, id uint) (teams.TeamEntity, error) {
 	team := TeamEntityToTeam(teamEntity)
 	if err := q.db.Where("id", id).Updates(&team); err.Error != nil {
-		return err.Error
+		return teamEntity, err.Error
 	}
-	return nil
+	return TeamToTeamEntity(team), nil
 }
 
 func (q *query) Destroy(id uint) error {

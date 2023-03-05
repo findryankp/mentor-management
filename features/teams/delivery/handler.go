@@ -33,10 +33,10 @@ func (t *TeamHandler) GetById(c echo.Context) error {
 	id := uint(_id)
 	teamEntity, err := t.Service.GetById(id)
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, helpers.ResponseFail("error read data"))
+		return c.JSON(http.StatusNotFound, helpers.ResponseFail("data not found"))
 	}
 	teamResponse := TeamEntityToTeamResponse(teamEntity)
-	return c.JSON(http.StatusOK, helpers.ResponseSuccess("all teams", teamResponse))
+	return c.JSON(http.StatusOK, helpers.ResponseSuccess("-", teamResponse))
 }
 
 func (t *TeamHandler) Create(c echo.Context) error {
@@ -45,12 +45,12 @@ func (t *TeamHandler) Create(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, helpers.ResponseFail("error bind data"))
 	}
 
-	team := TeamRequestToTeamEntity(formInput)
-	if err := t.Service.Create(team); err != nil {
+	team, err := t.Service.Create(TeamRequestToTeamEntity(&formInput))
+	if err != nil {
 		return c.JSON(http.StatusInternalServerError, helpers.ResponseFail(err.Error()))
 	}
 
-	return c.JSON(http.StatusCreated, helpers.ResponseSuccess("Register Success", TeamEntityToTeamResponse(team)))
+	return c.JSON(http.StatusCreated, helpers.ResponseSuccess("Create Data Success", TeamEntityToTeamResponse(team)))
 }
 
 func (t *TeamHandler) Update(c echo.Context) error {
@@ -62,12 +62,12 @@ func (t *TeamHandler) Update(c echo.Context) error {
 	_id, _ := strconv.Atoi(c.Param("id"))
 	id := uint(_id)
 
-	team := TeamRequestToTeamEntity(formInput)
-	if err := t.Service.Update(team, id); err != nil {
-		return c.JSON(http.StatusInternalServerError, helpers.ResponseFail(err.Error()))
+	team, err := t.Service.Update(TeamRequestToTeamEntity(&formInput), id)
+	if err != nil {
+		return c.JSON(http.StatusNotFound, helpers.ResponseFail(err.Error()))
 	}
 
-	return c.JSON(http.StatusOK, helpers.ResponseSuccess("berhasil update data user", TeamEntityToTeamResponse(team)))
+	return c.JSON(http.StatusOK, helpers.ResponseSuccess("Update Data Success", TeamEntityToTeamResponse(team)))
 }
 
 func (t *TeamHandler) Delete(c echo.Context) error {
@@ -78,5 +78,5 @@ func (t *TeamHandler) Delete(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, helpers.ResponseFail(err.Error()))
 	}
 
-	return c.JSON(http.StatusOK, helpers.ResponseSuccess("berhasil delete data", nil))
+	return c.JSON(http.StatusOK, helpers.ResponseSuccess("Delete Data Success", nil))
 }

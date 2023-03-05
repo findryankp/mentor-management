@@ -18,6 +18,6 @@ func TeamRouter(db *gorm.DB, e *echo.Echo) {
 	g.GET("", handler.GetAll)
 	g.GET("/:id", handler.GetById)
 	g.POST("", handler.Create)
-	g.PUT("/:id", handler.Create)
-	g.DELETE("/:id", handler.Create)
+	g.PUT("/:id", handler.Update)
+	g.DELETE("/:id", handler.Delete)
 }

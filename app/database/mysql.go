@@ -16,18 +16,5 @@ func InitDBMysql(app configs.AppConfig) *gorm.DB {
 		panic(err.Error())
 	}
 
-	InitialMigration(DB)
-
 	return DB
-}
-
-func InitialMigration(db *gorm.DB) {
-	err := db.AutoMigrate(
-	// &data.User{},
-	)
-
-	if err != nil {
-		panic("Error Migration")
-	}
-	fmt.Println("Migration Done")
 }

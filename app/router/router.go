@@ -11,5 +11,5 @@ func InitRouter(db *gorm.DB, e *echo.Echo) {
 	middlewares.BasicLogger(e)
 	AuthRouter(db, e)
 	UserRouter(db, e)
-	// _b.BookRouter(db, e)
+	TeamRouter(db, e)
 }

@@ -4,7 +4,7 @@ import (
 	"clean-arch/features/teams"
 )
 
-func TeamRequestToTeamEntity(teamRequest TeamRequest) teams.TeamEntity {
+func TeamRequestToTeamEntity(teamRequest *TeamRequest) teams.TeamEntity {
 	return teams.TeamEntity{
 		Name: teamRequest.Name,
 	}
