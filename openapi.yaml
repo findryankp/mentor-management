@@ -1,0 +1,489 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: Team Management API
+  description: An API for managing teams.
+
+paths:
+  /teams:
+    get:
+      tags:
+      - Team
+      summary: List all teams
+      responses:
+        '200':
+          description: A list of all teams
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+              
+              examples:
+                teamData:
+                  description: "Example data team"
+                  value: {
+                    status: true,
+                    message: "-",
+                    data : [
+                      {
+                        id: "1",
+                        name: "Placement",
+                      },
+                      {
+                        id: "2",
+                        name: "Academic",
+                      },
+                    ]
+                  }
+    
+    post:
+      tags:
+        - Team
+      summary: Create a new team
+      requestBody:
+        description: The team to create
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  description: The name of the team
+      responses:
+        '201':
+          description: The newly created team
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+
+              examples:
+                teamData:
+                  description: "Example data team"
+                  value: {
+                    status: true,
+                    message: "Create data success",
+                    data : 
+                      {
+                        id: "1",
+                        name: "Placement",
+                      }
+                  }               
+  /teams/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: The ID of the team to retrieve or update
+        schema:
+          type: integer
+
+    get:
+      tags:
+      - Team
+      summary: Get a team by ID
+      responses:
+        '200':
+          description: The requested team
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+              
+              examples:
+                teamData:
+                  description: "Example data team"
+                  value: {
+                    status: true,
+                    message: "-",
+                    data : 
+                      {
+                        id: "1",
+                        name: "Placement",
+                      }
+                  }
+        '404':
+          description: Team Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+              
+              examples:
+                teamData:
+                  description: "Team Not Found"
+                  value: {
+                    status: false,
+                    message: "Data not found"
+                  }
+    put:
+      tags:
+      - Team
+      summary: Update a team by ID
+      requestBody:
+        description: The updated team
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The updated name of the team
+      responses:
+        '200':
+          description: The updated team
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+              
+              examples:
+                teamData:
+                  description: "Example data team"
+                  value: {
+                    status: true,
+                    message: "Update data success",
+                    data : 
+                      {
+                        id: "1",
+                        name: "Placement",
+                      }
+                  }
+          
+        '404':
+          description: The updated team not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+              
+              examples:
+                teamData:
+                  description: "Team Not Found"
+                  value: {
+                    status: false,
+                    message: "Data not found"
+                  }
+              
+
+    delete:
+      tags:
+      - Team
+      summary: Delete a team by ID
+      responses:
+        '204':
+          description: The team was successfully deleted
+          content:
+            application/json:
+              examples:
+                teamData:
+                  description: "Delete team"
+                  value: {
+                    status: true,
+                    message: "Delete data success"
+                  }
+
+  ####################################
+  #  CLASS
+  ####################################
+
+  /classes:
+    get:
+      tags:
+        - Class
+      summary: List all Class
+      responses:
+        '200':
+          description: A list of all teams
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Class'
+              
+              examples:
+                teamData:
+                  description: "Example data class"
+                  value: {
+                    status: true,
+                    message: "-",
+                    data : [
+                      {
+                        "id": 1,
+                        "name": "BE 11",
+                        "pic": "Fakhry",
+                        "start_date": "2022-06-10",
+                        "graduate_date": "2022-08-30"
+                      },
+                      {
+                        "id": 2,
+                        "name": "FE 8",
+                        "pic": "Bagas",
+                        "start_date": "2022-06-10",
+                        "graduate_date": "2022-08-30"
+                      }
+                    ]
+                  }
+    
+    post:
+      tags:
+        - Class
+      summary: Create a new class
+      requestBody:
+        description: The class to create
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - pic
+                - start_date
+                - graduate_date
+              properties:
+                name:
+                  type: string
+                  description: The name of the class
+                pic:
+                  type: integer
+                  description: pic
+                start_date:
+                  type: string
+                  format : date
+                  description: The name of the class
+                graduate_date:
+                  type: string
+                  format : date
+                  description: The name of the class
+      responses:
+        '201':
+          description: The newly created class
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+
+              examples:
+                classData:
+                  description: "Example data class"
+                  value: {
+                    status: true,
+                    message: "Create data success",
+                    data : 
+                      {
+                        "id": 1,
+                        "name": "BE 11",
+                        "pic": "Fakhry",
+                        "start_date": "2022-06-10",
+                        "graduate_date": "2022-08-30"
+                      },
+                  }
+  
+  /classes/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: The ID of the team to retrieve or update
+        schema:
+          type: integer
+
+    get:
+      tags:
+      - Class
+      summary: Get a class by ID
+      responses:
+        '200':
+          description: The requested class
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+              
+              examples:
+                teamData:
+                  description: "Example data class"
+                  value: {
+                    status: true,
+                    message: "-",
+                    data : 
+                      {
+                        "id": 1,
+                        "name": "BE 11",
+                        "pic" : 1,
+                        "start_date": "2022-06-10",
+                        "graduate_date": "2022-08-30"
+                      }
+                  }
+        '404':
+          description: Class Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+              
+              examples:
+                teamData:
+                  description: "Class Not Found"
+                  value: {
+                    status: false,
+                    message: "Data not found"
+                  }
+    put:
+      tags:
+      - Class
+      summary: Update a class by ID
+      requestBody:
+        description: The updated class
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the class
+                pic:
+                  type: integer
+                  description: pic
+                start_date:
+                  type: string
+                  format : date
+                  description: The name of the class
+                graduate_date:
+                  type: string
+                  format : date
+                  description: The name of the class
+      responses:
+        '200':
+          description: The updated class
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+              
+              examples:
+                teamData:
+                  description: "Example data class"
+                  value: {
+                    status: true,
+                    message: "Update data success",
+                    data : 
+                      {
+                        id: "1",
+                        name: "Placement",
+                      }
+                  }
+          
+        '404':
+          description: The updated class not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+              
+              examples:
+                teamData:
+                  description: "Class Not Found"
+                  value: {
+                    status: false,
+                    message: "Data not found"
+                  }
+              
+    delete:
+      tags:
+      - Class
+      summary: Delete a team by ID
+      responses:
+        '204':
+          description: The team was successfully deleted
+          content:
+            application/json:
+              examples:
+                teamData:
+                  description: "Delete team"
+                  value: {
+                    status: true,
+                    message: "Delete data success"
+                  }
+
+  ####################################
+  #  REQUESTED FEEDBACK
+  ####################################
+
+components:
+  schemas:
+    Team:
+      type: object
+      required:
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The ID of the team
+        name:
+          type: string
+          description: The name of the team
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time the team was created
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time the team was last updated
+        deleted_at:
+          type: string
+          format: date-time
+          description: The date and time the team was deleted
+    
+    Class:
+      type: object
+      required:
+        - name
+        - pic
+        - start_date
+        - graduate_date
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The ID of the team
+        name:
+          type: string
+          description: The name of the team
+        pic:
+          type: integer
+          description: The name of the team
+        start_date:
+          type: string
+          format: date
+          description: The name of the team
+        graduate_date:
+          type: string
+          format: date
+          description: The name of the team
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time the team was created
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time the team was last updated
+        deleted_at:
+          type: string
+          format: date-time
+          description: The date and time the team was deleted
