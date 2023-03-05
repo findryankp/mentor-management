@@ -12,22 +12,30 @@ func New(data users.UserDataInterface) users.UserServiceInterface {
 	}
 }
 
-func (u *userService) GetAll() ([]users.UserEntity, error) {
-	return u.Data.SelectAll()
+func (s *userService) GetAll() ([]users.UserEntity, error) {
+	return s.Data.SelectAll()
 }
 
-func (u *userService) GetById(id uint) (users.UserEntity, error) {
-	return u.Data.SelectById(id)
+func (s *userService) GetById(id uint) (users.UserEntity, error) {
+	return s.Data.SelectById(id)
 }
 
-func (u *userService) Create(request users.UserEntity) error {
-	return u.Data.Store(request)
+func (s *userService) Create(request users.UserEntity) (users.UserEntity, error) {
+	return s.Data.Store(request)
 }
 
-func (u *userService) Update(request users.UserEntity, id uint) error {
-	return u.Data.Edit(request, id)
+func (s *userService) Update(request users.UserEntity, id uint) (users.UserEntity, error) {
+	if checkDataExist, err := s.Data.SelectById(id); err != nil {
+		return checkDataExist, err
+	}
+
+	return s.Data.Edit(request, id)
 }
 
-func (u *userService) Delete(id uint) error {
-	return u.Data.Destroy(id)
+func (s *userService) Delete(id uint) error {
+	if _, err := s.Data.SelectById(id); err != nil {
+		return err
+	}
+
+	return s.Data.Destroy(id)
 }

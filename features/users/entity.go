@@ -1,14 +1,17 @@
 package users
 
-import "time"
+import (
+	"time"
+)
 
 type UserEntity struct {
 	Id        uint
-	Name      string
+	TeamId    uint
+	FullName  string
 	Email     string
 	Password  string
-	Address   string
 	Role      string
+	Status    bool
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
@@ -16,15 +19,15 @@ type UserEntity struct {
 type UserServiceInterface interface {
 	GetAll() ([]UserEntity, error)
 	GetById(id uint) (UserEntity, error)
-	Create(userEntity UserEntity) error
-	Update(userEntity UserEntity, id uint) error
+	Create(userEntity UserEntity) (UserEntity, error)
+	Update(userEntity UserEntity, id uint) (UserEntity, error)
 	Delete(id uint) error
 }
 
 type UserDataInterface interface {
 	SelectAll() ([]UserEntity, error)
 	SelectById(id uint) (UserEntity, error)
-	Store(userEntity UserEntity) error
-	Edit(userEntity UserEntity, id uint) error
+	Store(userEntity UserEntity) (UserEntity, error)
+	Edit(userEntity UserEntity, id uint) (UserEntity, error)
 	Destroy(id uint) error
 }

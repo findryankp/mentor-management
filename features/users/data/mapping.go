@@ -4,22 +4,24 @@ import "clean-arch/features/users"
 
 func UserEntityToUser(userEntity users.UserEntity) User {
 	return User{
-		Name:     userEntity.Name,
+		TeamId:   userEntity.TeamId,
+		FullName: userEntity.FullName,
 		Email:    userEntity.Email,
 		Password: userEntity.Password,
-		Address:  userEntity.Address,
 		Role:     userEntity.Role,
+		Status:   userEntity.Status,
 	}
 }
 
 func UserToUserEntity(user User) users.UserEntity {
 	return users.UserEntity{
 		Id:        user.ID,
-		Name:      user.Name,
+		TeamId:    user.TeamId,
+		FullName:  user.FullName,
 		Email:     user.Email,
 		Password:  user.Password,
-		Address:   user.Address,
 		Role:      user.Role,
+		Status:    user.Status,
 		CreatedAt: user.CreatedAt,
 		UpdatedAt: user.UpdatedAt,
 	}

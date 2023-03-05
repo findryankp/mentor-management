@@ -32,20 +32,20 @@ func (q *query) SelectById(id uint) (users.UserEntity, error) {
 	return UserToUserEntity(user), nil
 }
 
-func (q *query) Store(request users.UserEntity) error {
-	user := UserEntityToUser(request)
+func (q *query) Store(userEntity users.UserEntity) (users.UserEntity, error) {
+	user := UserEntityToUser(userEntity)
 	if err := q.db.Create(&user); err.Error != nil {
-		return err.Error
+		return userEntity, err.Error
 	}
-	return nil
+	return UserToUserEntity(user), nil
 }
 
-func (q *query) Edit(request users.UserEntity, id uint) error {
-	user := UserEntityToUser(request)
+func (q *query) Edit(userEntity users.UserEntity, id uint) (users.UserEntity, error) {
+	user := UserEntityToUser(userEntity)
 	if err := q.db.Where("id", id).Updates(&user); err.Error != nil {
-		return err.Error
+		return userEntity, err.Error
 	}
-	return nil
+	return UserToUserEntity(user), nil
 }
 
 func (q *query) Destroy(id uint) error {

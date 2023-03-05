@@ -3,20 +3,22 @@ package delivery
 import "clean-arch/features/users"
 
 type UserResponse struct {
-	Id      uint   `json:"id"`
-	Name    string `json:"name"`
-	Email   string `json:"email"`
-	Address string `json:"address"`
-	Role    string `json:"role"`
+	Id       uint   `json:"id"`
+	TeamId   uint   `json:"team_id"`
+	FullName string `json:"full_name"`
+	Email    string `json:"email"`
+	Role     string `json:"role"`
+	Status   bool   `json:"status"`
 }
 
-func UserEntityToUserResponse(user users.UserEntity) UserResponse {
+func UserEntityToUserResponse(userEntity users.UserEntity) UserResponse {
 	return UserResponse{
-		Id:      user.Id,
-		Name:    user.Name,
-		Email:   user.Email,
-		Address: user.Address,
-		Role:    user.Role,
+		Id:       userEntity.Id,
+		TeamId:   userEntity.TeamId,
+		FullName: userEntity.FullName,
+		Email:    userEntity.Email,
+		Role:     userEntity.Role,
+		Status:   userEntity.Status,
 	}
 }
 
