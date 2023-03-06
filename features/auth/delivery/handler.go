@@ -53,12 +53,21 @@ func (u *AuthHandler) Register(c echo.Context) error {
 }
 
 func (u *AuthHandler) GetUserLogin(c echo.Context) error {
-	bbb := middlewares.ClaimsToken(c)
-	// user_id, roles := middlewares.ClaimsToken(c)
-	// data := map[string]any{
-	// 	"user_id": user_id,
-	// 	"role":    roles,
-	// }
-	// fmt.Println("SELESAI 1")
-	return c.JSON(http.StatusOK, helpers.ResponseSuccess("-", bbb))
+	tokenClaim := middlewares.ClaimsToken(c)
+	return c.JSON(http.StatusOK, helpers.ResponseSuccess("-", tokenClaim))
+}
+
+func (u *AuthHandler) ChangePassword(c echo.Context) error {
+	user_id := middlewares.ClaimsToken(c).Id
+
+	r := ChangePasswordRequest{}
+	if err := c.Bind(&r); err != nil {
+		return c.JSON(http.StatusBadRequest, helpers.ResponseFail("Error bind data"))
+	}
+
+	if err := u.Service.ChangePassword(uint(user_id), r.OldPassword, r.NewPassword, r.ConfirmPassword); err != nil {
+		return c.JSON(http.StatusBadRequest, helpers.ResponseFail(err.Error()))
+	}
+
+	return c.JSON(http.StatusOK, helpers.ResponseSuccess("Change password Success", nil))
 }

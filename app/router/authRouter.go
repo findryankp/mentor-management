@@ -18,10 +18,10 @@ func AuthRouter(db *gorm.DB, e *echo.Echo) {
 	g := e.Group("/auth")
 	g.POST("/register", handler.Register)
 	g.POST("/login", handler.Login)
+	// g.POST("/forget-password", handler.Create)
 
 	g.Use(middlewares.Authentication)
 	g.GET("/users", handler.GetUserLogin)
-
-	// g.POST("/change-password", handler.Create)
-	// g.POST("/forget-password", handler.Create)
+	g.POST("/change-password", handler.ChangePassword)
+	//
 }

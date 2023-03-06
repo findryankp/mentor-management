@@ -12,10 +12,15 @@ type query struct {
 	db *gorm.DB
 }
 
-// Login implements authuser.AuthDataInterface
-func (q *query) GetUserByEmail(email string) (users.UserEntity, error) {
+func New(db *gorm.DB) auth.AuthDataInterface {
+	return &query{
+		db: db,
+	}
+}
+
+func (q *query) GetUserByEmailOrId(email string, id uint) (users.UserEntity, error) {
 	var user data.User
-	if err := q.db.Where("email", email).First(&user); err.Error != nil {
+	if err := q.db.Where("email = ? or id = ?", email, id).First(&user); err.Error != nil {
 		return users.UserEntity{}, err.Error
 	}
 
@@ -30,8 +35,10 @@ func (q *query) Register(request users.UserEntity) error {
 	return nil
 }
 
-func New(db *gorm.DB) auth.AuthDataInterface {
-	return &query{
-		db: db,
+func (q *query) EditPassword(id uint, pass string) error {
+	var user data.User
+	if err := q.db.Model(&user).Where("id", id).Update("password", pass); err.Error != nil {
+		return err.Error
 	}
+	return nil
 }
