@@ -1,7 +1,7 @@
 package delivery
 
 import (
-	"clean-arch/features/teams"
+	"immersiveApp/features/teams"
 )
 
 func TeamRequestToTeamEntity(teamRequest *TeamRequest) teams.TeamEntity {

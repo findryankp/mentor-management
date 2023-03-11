@@ -1,8 +1,8 @@
 package data
 
 import (
-	"clean-arch/features/classes"
-	"clean-arch/features/users"
+	"immersiveApp/features/classes"
+	"immersiveApp/features/users"
 	"reflect"
 )
 
@@ -28,8 +28,14 @@ func ClassToClassEntity(class Class) classes.ClassEntity {
 
 	if !reflect.ValueOf(class.User).IsZero() {
 		result.User = users.UserEntity{
-			Id:       class.User.ID,
-			FullName: class.User.FullName,
+			Id:          class.User.ID,
+			TeamId:      class.User.TeamId,
+			FullName:    class.User.FullName,
+			Email:       class.User.Email,
+			Role:        class.User.Role,
+			Status:      class.User.Status,
+			PhoneNumber: class.User.PhoneNumber,
+			Address:     class.User.Address,
 		}
 	}
 	return result

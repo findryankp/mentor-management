@@ -1,9 +1,9 @@
 package data
 
 import (
-	m "clean-arch/features/mentees/data"
-	s "clean-arch/features/statuses/data"
-	u "clean-arch/features/users/data"
+	// m "immersiveApp/features/mentees/data"
+	s "immersiveApp/features/statuses/data"
+	u "immersiveApp/features/users/data"
 
 	"gorm.io/gorm"
 )
@@ -12,11 +12,17 @@ type Feedback struct {
 	gorm.Model
 	Notes    string
 	Proof    string
-	UserId   int
+	UserId   uint
 	User     *u.User `gorm:"foreignKey:UserId"`
-	MenteeId int
-	Mentee   *m.Mentee `gorm:"foreignKey:UserId"`
-	StatusId int
+	MenteeId uint
+	// Mentee   *m.Mentee `gorm:"foreignKey:UserId"`
+	// Mente m.Mentee `gorm:foreignKey:`
+	StatusId uint
 	Status   *s.Status `gorm:"foreignKey:UserId"`
 	Approved bool
 }
+
+// type Result struct {
+// 	m.Mentee
+// 	Feedback
+// }

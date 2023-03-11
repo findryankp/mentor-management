@@ -1,10 +1,10 @@
 package delivery
 
 import (
-	"clean-arch/app/middlewares"
-	"clean-arch/features/auth"
-	"clean-arch/features/users/delivery"
-	"clean-arch/utils/helpers"
+	"immersiveApp/app/middlewares"
+	"immersiveApp/features/auth"
+	"immersiveApp/features/users/delivery"
+	"immersiveApp/utils/helpers"
 	"net/http"
 
 	"github.com/labstack/echo/v4"

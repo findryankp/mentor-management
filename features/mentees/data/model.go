@@ -1,15 +1,17 @@
 package data
 
 import (
-	c "clean-arch/features/classes/data"
-	s "clean-arch/features/statuses/data"
+	c "immersiveApp/features/classes/data"
+	s "immersiveApp/features/statuses/data"
+
+	d "immersiveApp/features/feedbacks/data"
 
 	"gorm.io/gorm"
 )
 
 type Mentee struct {
 	gorm.Model
-	ClassId         int
+	ClassId         uint
 	Class           *c.Class `gorm:"foreignKey:ClassId"`
 	FullName        string
 	NickName        string
@@ -18,7 +20,7 @@ type Mentee struct {
 	CurrentAddress  string
 	HomeAddress     string
 	Telegram        string
-	StatusId        int
+	StatusId        uint
 	Status          *s.Status `gorm:"foreignKey:StatusId"`
 	Gender          string
 	EducationType   string
@@ -28,4 +30,11 @@ type Mentee struct {
 	EmergencyName   string
 	EmergencyPhone  string
 	EmergencyStatus string
+	Feedbacks       *[]d.Feedback `gorm:"foreignKey:MenteeId"`
 }
+
+// // type MenteeAndFeedback
+// type Result struct {
+// 	mentees.MenteeEntity
+// 	feedbacks.FeedbackEntity
+// }

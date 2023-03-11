@@ -1,11 +1,11 @@
 package service
 
 import (
-	"clean-arch/app/middlewares"
-	"clean-arch/features/auth"
-	"clean-arch/features/users"
-	"clean-arch/utils/helpers"
 	"errors"
+	"immersiveApp/app/middlewares"
+	"immersiveApp/features/auth"
+	"immersiveApp/features/users"
+	"immersiveApp/utils/helpers"
 )
 
 type authService struct {

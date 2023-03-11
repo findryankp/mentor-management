@@ -1,7 +1,7 @@
 package data
 
 import (
-	"clean-arch/features/users"
+	"immersiveApp/features/users"
 
 	"gorm.io/gorm"
 )
@@ -45,7 +45,13 @@ func (q *query) Edit(userEntity users.UserEntity, id uint) (uint, error) {
 	if err := q.db.Where("id", id).Updates(&user); err.Error != nil {
 		return 0, err.Error
 	}
-	return user.ID, nil
+
+	inputForStatus := map[string]interface{}{"status": user.Status}
+	if err := q.db.Model(&user).Where("id", id).Updates(inputForStatus); err.Error != nil {
+		return 0, err.Error
+	}
+
+	return id, nil
 }
 
 func (q *query) Destroy(id uint) error {

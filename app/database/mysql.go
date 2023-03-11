@@ -1,8 +1,8 @@
 package database
 
 import (
-	"clean-arch/app/configs"
 	"fmt"
+	"immersiveApp/app/configs"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

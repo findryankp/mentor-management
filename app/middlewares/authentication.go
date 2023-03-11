@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"clean-arch/utils/helpers"
+	"immersiveApp/utils/helpers"
 	"net/http"
 
 	"github.com/labstack/echo/v4"

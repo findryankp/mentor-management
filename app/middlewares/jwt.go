@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"clean-arch/app/configs"
 	"errors"
+	"immersiveApp/app/configs"
 	"strings"
 	"time"
 

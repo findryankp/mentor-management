@@ -1,13 +1,13 @@
 package database
 
 import (
-	class "clean-arch/features/classes/data"
-	feedback "clean-arch/features/feedbacks/data"
-	mentee "clean-arch/features/mentees/data"
-	status "clean-arch/features/statuses/data"
-	team "clean-arch/features/teams/data"
-	user "clean-arch/features/users/data"
 	"fmt"
+	class "immersiveApp/features/classes/data"
+	feedback "immersiveApp/features/feedbacks/data"
+	mentee "immersiveApp/features/mentees/data"
+	status "immersiveApp/features/statuses/data"
+	team "immersiveApp/features/teams/data"
+	user "immersiveApp/features/users/data"
 
 	"gorm.io/gorm"
 )
@@ -15,9 +15,9 @@ import (
 func InitMigration(db *gorm.DB) {
 	err := db.AutoMigrate(
 		&team.Team{},
-		&user.User{},
 		&class.Class{},
 		&status.Status{},
+		&user.User{},
 		&mentee.Mentee{},
 		&feedback.Feedback{},
 	)

@@ -1,14 +1,16 @@
 package main
 
 import (
-	"clean-arch/app/configs"
-	"clean-arch/app/database"
-	"clean-arch/app/router"
+	"immersiveApp/app/configs"
+	"immersiveApp/app/database"
+	"immersiveApp/app/router"
+	"immersiveApp/docs"
 
 	"github.com/labstack/echo/v4"
 )
 
 func main() {
+	docs.InitSwagger()
 	cfg := configs.InitConfig()
 	db := database.InitDBMysql(*cfg)
 	database.InitMigration(db)

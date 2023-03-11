@@ -1,9 +1,9 @@
 package data
 
 import (
-	"clean-arch/features/auth"
-	"clean-arch/features/users"
-	"clean-arch/features/users/data"
+	"immersiveApp/features/auth"
+	"immersiveApp/features/users"
+	"immersiveApp/features/users/data"
 
 	"gorm.io/gorm"
 )

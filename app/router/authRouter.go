@@ -4,10 +4,10 @@ import (
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 
-	"clean-arch/app/middlewares"
-	_authData "clean-arch/features/auth/data"
-	_authHandler "clean-arch/features/auth/delivery"
-	_authService "clean-arch/features/auth/service"
+	"immersiveApp/app/middlewares"
+	_authData "immersiveApp/features/auth/data"
+	_authHandler "immersiveApp/features/auth/delivery"
+	_authService "immersiveApp/features/auth/service"
 )
 
 func AuthRouter(db *gorm.DB, e *echo.Echo) {
@@ -23,5 +23,4 @@ func AuthRouter(db *gorm.DB, e *echo.Echo) {
 	g.Use(middlewares.Authentication)
 	g.GET("/users", handler.GetUserLogin)
 	g.POST("/change-password", handler.ChangePassword)
-	//
 }

@@ -1,16 +1,20 @@
 package service
 
 import (
-	"clean-arch/features/teams"
+	"immersiveApp/features/teams"
+
+	"github.com/go-playground/validator/v10"
 )
 
 type teamService struct {
-	Data teams.TeamDataInterface
+	Data     teams.TeamDataInterface
+	validate *validator.Validate
 }
 
 func New(data teams.TeamDataInterface) teams.TeamServiceInterface {
 	return &teamService{
-		Data: data,
+		Data:     data,
+		validate: validator.New(),
 	}
 }
 
@@ -23,6 +27,11 @@ func (s *teamService) GetById(id uint) (teams.TeamEntity, error) {
 }
 
 func (s *teamService) Create(teamEntity teams.TeamEntity) (teams.TeamEntity, error) {
+	errValidate := s.validate.Struct(teamEntity)
+	if errValidate != nil {
+		return teams.TeamEntity{}, errValidate
+	}
+
 	user_id, err := s.Data.Store(teamEntity)
 	if err != nil {
 		return teams.TeamEntity{}, err

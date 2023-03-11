@@ -1,7 +1,7 @@
 package data
 
 import (
-	"clean-arch/features/classes"
+	"immersiveApp/features/classes"
 
 	"gorm.io/gorm"
 )

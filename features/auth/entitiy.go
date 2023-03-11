@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"clean-arch/features/users"
+	"immersiveApp/features/users"
 )
 
 type AuthServiceInterface interface {

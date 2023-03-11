@@ -4,7 +4,7 @@ import "gorm.io/gorm"
 
 type Status struct {
 	gorm.Model
-	Name     string
-	ParentId string
-	Desc     string
+	Name        string
+	ParentId    uint
+	Description string
 }

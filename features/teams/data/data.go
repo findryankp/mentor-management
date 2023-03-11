@@ -1,7 +1,7 @@
 package data
 
 import (
-	"clean-arch/features/teams"
+	"immersiveApp/features/teams"
 
 	"gorm.io/gorm"
 )

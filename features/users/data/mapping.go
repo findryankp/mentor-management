@@ -1,34 +1,38 @@
 package data
 
 import (
-	"clean-arch/features/teams"
-	"clean-arch/features/users"
+	"immersiveApp/features/teams"
+	"immersiveApp/features/users"
 	"reflect"
 )
 
 func UserEntityToUser(userEntity users.UserEntity) User {
 	return User{
-		TeamId:   userEntity.TeamId,
-		FullName: userEntity.FullName,
-		Email:    userEntity.Email,
-		Password: userEntity.Password,
-		Role:     userEntity.Role,
-		Status:   userEntity.Status,
+		TeamId:      userEntity.TeamId,
+		FullName:    userEntity.FullName,
+		Email:       userEntity.Email,
+		Password:    userEntity.Password,
+		PhoneNumber: userEntity.PhoneNumber,
+		Address:     userEntity.Address,
+		Role:        userEntity.Role,
+		Status:      userEntity.Status,
 	}
 }
 
 func UserToUserEntity(user User) users.UserEntity {
 
 	result := users.UserEntity{
-		Id:        user.ID,
-		TeamId:    user.TeamId,
-		FullName:  user.FullName,
-		Email:     user.Email,
-		Password:  user.Password,
-		Role:      user.Role,
-		Status:    user.Status,
-		CreatedAt: user.CreatedAt,
-		UpdatedAt: user.UpdatedAt,
+		Id:          user.ID,
+		TeamId:      user.TeamId,
+		FullName:    user.FullName,
+		Email:       user.Email,
+		Password:    user.Password,
+		PhoneNumber: user.PhoneNumber,
+		Address:     user.Address,
+		Role:        user.Role,
+		Status:      user.Status,
+		CreatedAt:   user.CreatedAt,
+		UpdatedAt:   user.UpdatedAt,
 	}
 
 	if !reflect.ValueOf(user.Team).IsZero() {

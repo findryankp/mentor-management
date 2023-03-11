@@ -1,8 +1,8 @@
 package delivery
 
 import (
-	"clean-arch/features/teams"
-	"clean-arch/utils/helpers"
+	"immersiveApp/features/teams"
+	"immersiveApp/utils/helpers"
 	"net/http"
 	"strconv"
 

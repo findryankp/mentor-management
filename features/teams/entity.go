@@ -6,7 +6,7 @@ import (
 
 type TeamEntity struct {
 	Id        uint
-	Name      string
+	Name      string `validate:"required"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }

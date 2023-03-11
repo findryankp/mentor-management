@@ -1,17 +1,17 @@
 package classes
 
 import (
-	"clean-arch/features/users"
+	"immersiveApp/features/users"
 	"time"
 )
 
 type ClassEntity struct {
 	Id           uint
-	ClassName    string
-	PicUserId    uint
+	ClassName    string `validate:"required"`
+	PicUserId    uint   `validate:"required"`
 	User         users.UserEntity
-	DateStart    string
-	DateGraduate string
+	DateStart    string `validate:"required"`
+	DateGraduate string `validate:"required"`
 	CreatedAt    time.Time
 	UpdatedAt    time.Time
 }
