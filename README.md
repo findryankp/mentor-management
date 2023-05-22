@@ -46,8 +46,7 @@ go run .
 
 ## 😎 Author
   [![GitHub](https://img.shields.io/badge/-Findryan-black?style=for-the-badge&logo=github&logoColor=white)]([https://github.com/Findryankp)
-  [![GitHub](https://img.shields.io/badge/-Rischiyuda-black?style=for-the-badge&logo=github&logoColor=white) 
-
+  ![GitHub](https://img.shields.io/badge/-Rischiyuda-black?style=for-the-badge&logo=github&logoColor=white) 
   [![GitHub](https://img.shields.io/badge/-Idakusumawati-black?style=for-the-badge&logo=github&logoColor=white)]([https://github.com/kocwng)
 
 ## 🚀 Entity Relational Database
