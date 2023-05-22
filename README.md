@@ -14,8 +14,6 @@ go run .
 ```
 
 ## 🚀 Tech Stack
-### 🧰Backend
-
 <p align="Left"> 
   <a href="https://aws.amazon.com/" target="_blank" rel="noreferrer">
     <img src="https://logos-world.net/wp-content/uploads/2021/08/Amazon-Web-Services-AWS-Logo-700x394.png"
