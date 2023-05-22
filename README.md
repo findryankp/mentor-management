@@ -15,6 +15,9 @@ go run .
 
 ## 🚀 Tech Stack
 <p align="Left"> 
+    <a href="https://go.dev/" target="_blank" rel="noreferrer"> 
+    <img src="https://raw.githubusercontent.com/jmnote/z-icons/master/svg/go.svg"
+      alt="go" width="40" height="40" /> </a>
   <a href="https://aws.amazon.com/" target="_blank" rel="noreferrer">
     <img src="https://logos-world.net/wp-content/uploads/2021/08/Amazon-Web-Services-AWS-Logo-700x394.png"
       alt="php" width="40" height="40" /> </a> 
@@ -41,32 +44,19 @@ go run .
   </a>
  </p>
 
-## 🤖Author
+## 😎 Author
 
 - Findryan Kurniap :
-
   [![GitHub](https://img.shields.io/badge/-Findryan-black?style=for-the-badge&logo=github&logoColor=white)]([https://github.com/Findryankp)
+  
 - Rischi Yuda:
-
   [![GitHub](https://img.shields.io/badge/-Rischiyuda-black?style=for-the-badge&logo=github&logoColor=white) 
-  ![LinkedIn](https://img.shields.io/badge/-RischiYuda-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rischi-yuda-ryo17/)
 
 - Ida Kusumawati :
-
   [![GitHub](https://img.shields.io/badge/-Idakusumawati-black?style=for-the-badge&logo=github&logoColor=white)]([https://github.com/kocwng)
 
-## *Entity Relational Database*
+## 🚀 Entity Relational Database
 ![contoh](./dokumentasi/ERD.png)
-## 
-<h3 align="Left">Programming Language :</h3>
-<p align="Left"> 
-  <a href="https://go.dev/" target="_blank" rel="noreferrer"> 
-    <img src="https://raw.githubusercontent.com/jmnote/z-icons/master/svg/go.svg"
-      alt="go" width="40" height="40" /> </a> 
-  <a href="https://www.mysql.com/" target="_blank" rel="noreferrer">
-    <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg" title="MySQL"  alt="MySQL" width="40" height="40"/>&nbsp;
-    </a>
-</p>
 
 
  
