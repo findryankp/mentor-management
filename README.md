@@ -45,14 +45,9 @@ go run .
  </p>
 
 ## 😎 Author
-
-- Findryan Kurniap :
   [![GitHub](https://img.shields.io/badge/-Findryan-black?style=for-the-badge&logo=github&logoColor=white)]([https://github.com/Findryankp)
-  
-- Rischi Yuda:
   [![GitHub](https://img.shields.io/badge/-Rischiyuda-black?style=for-the-badge&logo=github&logoColor=white) 
 
-- Ida Kusumawati :
   [![GitHub](https://img.shields.io/badge/-Idakusumawati-black?style=for-the-badge&logo=github&logoColor=white)]([https://github.com/kocwng)
 
 ## 🚀 Entity Relational Database
