@@ -5,7 +5,7 @@ Immersive Dashboard is an Immersive student data management application at Alter
 
 ## 👨🏽‍💻 Clone Repo
 ```shell
-git clone https://github.com/Findryankp/mentor-manajement
+git clone https://github.com/Findryankp/mentor-management
 ```
 
 ## 🎯 Run Project
